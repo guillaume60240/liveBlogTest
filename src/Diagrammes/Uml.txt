@@ -1,0 +1,26 @@
+@startuml
+class User {
+    id : integer autoIncrement notNull
+    email : String notNUll unique
+    firstName : String : notNull
+    lastName : String : notNull
+    description : Text : nullable
+}
+class Article {
+    id : Integer : autoIncrement notNull
+    title : String : notNull
+    content : Text : notNull
+    createdAt : DateTime : notNull
+    UserRelation : Relation(User) : notNull
+}
+class Comment {
+    id : integer : autoIncrement notNull
+    content : Text : notNull
+    createdAt : DateTime : notNull
+    UserRelation : Relation(User) : notNull
+    ArticleRelation : Relation(Article) : notNull
+}
+User "1"^--"many" Article
+User "1"^--"many" Comment
+Article "1"^--"many" Comment
+@enduml
